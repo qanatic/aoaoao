@@ -1,7 +1,11 @@
-import pyautogui
-import time
-import sys
 import os
+import sys
+import time
+import tkinter as tk
+
+import pyautogui
+
+from license_ui import LicenseApp
 
 # Определяем папку, где лежит exe или py
 if getattr(sys, 'frozen', False):  
@@ -27,41 +31,7 @@ item_names = load_items_from_file(resource_path("items.txt"))
 
 
 # === Клик по изображению на экране ===
-def click_image(image_path, description="", delay=0.3, timeout=3):
-    print(f"🔍 Ищем: {description}...")
-    start_time = time.time()
-    while time.time() - start_time < timeout:
-        location = pyautogui.locateCenterOnScreen(image_path, confidence=0.8)
-        if location:
-            print(f"✅ Найдено: {description} — {location}")
-            pyautogui.moveTo(location)
-            pyautogui.click()
-            time.sleep(delay)
-            return True
-        time.sleep(0.2)
-    print(f"❌ Не найдено: {description}")
-    return False
-
-# === Ввод текста в поле ===
-def type_item_name(name, delay=0.5):
-    pyautogui.write(name, interval=0.01)
-    time.sleep(delay)
-
-# === Основной цикл ===
-def process_all_items():
-    for index, name in enumerate(item_names):
-        print(f"\n🛒 Обработка предмета: {name}")
-
-        if index == 0:
-            # Первый предмет — открываем маркет
-            if not click_image(resource_path("market_icon.png"), "Открыть маркет"):
-                continue
-        else:
-            # Остальные — кликаем по кнопке новой покупки/поиска
-            if not click_image(resource_path("reset.png"), "Очистить/новый поиск"):
-                continue
-
-        # 1. Клик по полю поиска
+@@ -65,31 +69,31 @@ def process_all_items():
         if not click_image(resource_path("search_field.png"), "Поле поиска"):
             continue
 
@@ -87,9 +57,9 @@ def process_all_items():
         print(f"✅ Готово: {name}")
         time.sleep(1)
 
+
 # === Старт ===
 if __name__ == "__main__":
-    print("⏳ Старт через 3 секунды...")
-    time.sleep(3)
-    process_all_items()
-    print("🎉 Все предметы обработаны.")
+    root = tk.Tk()
+    app = LicenseApp(root, process_all_items, BASE_DIR)
+    root.mainloop()
