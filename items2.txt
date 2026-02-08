@@ -1,0 +1,21 @@
+e bag 5 3
+bag 6 2
+bag 6 3
+bag 7 3
+bag 8 1
+satchel 6 2
+satchel 8 1
+satchel 8 2
+fire staff 4 3
+fire staff 5 2
+fire staff 5 3
+fire staff 6 1
+fire staff 6 2
+blazing 4 3
+blazing 5 3
+holy 4 3
+holy 5 3
+holy 6 2
+capes 5 3
+capes 6 2
+capes 7 2

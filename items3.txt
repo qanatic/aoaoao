@@ -1,0 +1,12 @@
+riding horse 6
+riding horse 7
+riding horse 8
+armored horse 6
+armored horse 7
+transport ox 6
+transport ox 7
+transport ox 8
+saddled direboar
+saddled moabird
+saddled winter bear
+saddled greywolf
